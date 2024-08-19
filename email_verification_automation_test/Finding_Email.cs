@@ -13,7 +13,7 @@ namespace program_web
             bool checkEmail = Correct_email_construction.Check_Email(emailWanted);
             if (checkEmail == false)
             {
-                return $"\nThe text entered looks like this: '{emailWanted}'. This is incorrect syntax for email, please do the test again";
+                return $"The text entered looks like this: '{emailWanted}'. This is incorrect syntax for email, please do the test again";
             }
           
             else
@@ -24,7 +24,9 @@ namespace program_web
                 foreach (var link in links)
                 {
                     if (link.InnerText == emailWanted)
+                    {
                         i++;
+                    }       
                 }
                 return $"\nEmail wanted: '{emailWanted}' on {url} appears {i} times.";
             }
