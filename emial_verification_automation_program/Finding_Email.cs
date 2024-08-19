@@ -9,13 +9,13 @@ namespace program_web
             HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
             HtmlAgilityPack.HtmlDocument website_details = web.Load(url);
 
-            //if you make a typo
+            //security if you make a typo
             bool checkEmail = Correct_email_construction.Check_Email(emailWanted);
             if (checkEmail == false)
             {
-                return $"The text entered looks like this: '{emailWanted}'. This is incorrect syntax for email, please do the test again";
+                return $"\nThe text entered looks like this: '{emailWanted}'. Correct the email and run the test again";
             }
-          
+
             else
             {
                 int i = 0;
@@ -26,7 +26,7 @@ namespace program_web
                     if (link.InnerText == emailWanted)
                     {
                         i++;
-                    }       
+                    }
                 }
                 return $"\nEmail wanted: '{emailWanted}' on {url} appears {i} times.";
             }
