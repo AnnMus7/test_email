@@ -9,10 +9,13 @@ namespace program_web
             HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
             HtmlAgilityPack.HtmlDocument website_details = web.Load(url);
 
+            //if you make a typo
             bool checkEmail = Correct_email_construction.Check_Email(emailWanted);
             if (checkEmail == false)
+            {
                 return $"\nThe text entered looks like this: '{emailWanted}'. This is incorrect syntax for email, please do the test again";
-
+            }
+          
             else
             {
                 int i = 0;
@@ -20,12 +23,8 @@ namespace program_web
                 IEnumerable<HtmlNode> links = website_details.DocumentNode.Descendants("a").Where(x => x.Attributes.Contains("href"));
                 foreach (var link in links)
                 {
-                    {
-                        if (link.InnerText == emailWanted)
-                        {
-                            i++;
-                        }
-                    }
+                    if (link.InnerText == emailWanted)
+                        i++;
                 }
                 return $"\nEmail wanted: '{emailWanted}' on {url} appears {i} times.";
             }
